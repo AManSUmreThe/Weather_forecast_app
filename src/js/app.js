@@ -2,6 +2,7 @@ import { getForecast } from "./api.js";
 
 const countrySelect = document.getElementById("country-select");
 const citySelect = document.getElementById("city-select");
+const searchBtn = document.getElementById("search-btn");
 const errorMessage = document.getElementById("error-message");
 const alertsSection = document.getElementById("alerts-section");
 const currentWeather = document.getElementById("current-weather");
@@ -52,12 +53,14 @@ async function loadLocations() {
 
     citySelect.innerHTML = '<option value="">Select city</option>';
     citySelect.disabled = true;
+    searchBtn.disabled = true;
 }
 
 function onCountryChange() {
     const country = countrySelect.value;
     citySelect.innerHTML = '<option value="">Select city</option>';
     citySelect.disabled = !country;
+    searchBtn.disabled = true;
 
     if (!country) return;
 
@@ -79,9 +82,12 @@ function getLocationQuery() {
     return country ? `${city}, ${country}` : city;
 }
 
-async function onCityChange() {
+async function runSearch() {
     const location = getLocationQuery();
-    if (!location) return;
+    if (!location) {
+        showError("Please select a country and city.");
+        return;
+    }
 
     clearError();
     try {
@@ -92,6 +98,10 @@ async function onCityChange() {
     } catch (err) {
         showError(err.message || "Could not load forecast.");
     }
+}
+
+function onCityChange() {
+    searchBtn.disabled = !getLocationQuery();
 }
 
 function renderCurrent(data) {
@@ -158,5 +168,6 @@ function renderAlerts(data) {
 
 countrySelect.addEventListener("change", onCountryChange);
 citySelect.addEventListener("change", onCityChange);
+searchBtn.addEventListener("click", runSearch);
 
 loadLocations();
