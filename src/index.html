@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
+    <link rel="stylesheet" href="./output.css">
 </head>
-<body>
-    
+<body class="min-h-screen bg-slate-100 text-slate-800 p-4 md:p-6">
+    <header class="mb-6">
+        <h1 class="text-2xl font-bold text-slate-800">Weather Forecast</h1>
+        <div class="mt-4 flex flex-wrap gap-3 items-end">
+            <div>
+                <label for="country-select" class="block text-sm font-medium text-slate-600 mb-1">Country</label>
+                <select id="country-select" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 min-w-[180px]">
+                    <option value="">Select country</option>
+                </select>
+            </div>
+            <div>
+                <label for="city-select" class="block text-sm font-medium text-slate-600 mb-1">City</label>
+                <select id="city-select" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 min-w-[180px]" disabled>
+                    <option value="">Select city</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div id="error-message" class="hidden mb-4 rounded-lg bg-red-50 border border-red-200 text-red-800 px-4 py-3" role="alert"></div>
+
+    <section id="alerts-section" class="hidden mb-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3"></section>
+
+    <section id="current-weather" class="hidden mb-8 rounded-xl bg-white border border-slate-200 shadow-sm p-6">
+        <h2 class="text-lg font-semibold text-slate-700 mb-3">Current weather</h2>
+        <div class="flex flex-wrap items-center gap-4">
+            <div id="current-icon-wrap"></div>
+            <div>
+                <p id="current-location" class="text-xl font-medium text-slate-800"></p>
+                <p id="current-datetime" class="text-sm text-slate-500"></p>
+                <p id="current-temp" class="text-3xl font-bold text-slate-800 mt-1"></p>
+                <p id="current-condition" class="text-slate-600"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="forecast-section" class="hidden">
+        <h2 class="text-lg font-semibold text-slate-700 mb-3">7-day forecast</h2>
+        <div id="forecast-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-4"></div>
+    </section>
+
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
