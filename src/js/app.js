@@ -139,12 +139,12 @@ function renderForecast(data) {
         const day = fd.day || {};
         const cond = day.condition || {};
         const card = document.createElement("div");
-        card.className = "rounded-xl bg-white border border-slate-200 shadow-sm p-4 flex flex-col items-center text-center";
+        card.className = "rounded-2xl bg-weather-surface border border-weather-border p-5 flex flex-col items-center text-center shadow-[0_4px_14px_-2px_rgba(13,148,136,0.08)] transition hover:bg-weather-surface-hover hover:border-weather-border-strong";
         card.innerHTML = `
-            <p class="font-medium text-slate-700">${formatDate(fd.date)}</p>
-            <img src="${iconUrl(cond.icon)}" alt="${cond.text || ""}" class="w-12 h-12 my-2" />
-            <p class="text-sm text-slate-600">${cond.text || ""}</p>
-            <p class="text-slate-800 mt-1"><span class="font-semibold">${day.maxtemp_c ?? ""}°</span> / <span>${day.mintemp_c ?? ""}°</span></p>
+            <p class="font-semibold text-weather-text">${formatDate(fd.date)}</p>
+            <img src="${iconUrl(cond.icon)}" alt="${cond.text || ""}" class="w-14 h-14 my-3" />
+            <p class="text-sm text-weather-text-muted">${cond.text || ""}</p>
+            <p class="text-weather-text mt-2"><span class="font-bold text-weather-primary">${day.maxtemp_c ?? ""}°</span> <span class="text-weather-text-soft">/</span> <span>${day.mintemp_c ?? ""}°</span></p>
         `;
         forecastGrid.appendChild(card);
     });
@@ -160,7 +160,7 @@ function renderAlerts(data) {
         return;
     }
 
-    alertsSection.innerHTML = "<strong>Alerts</strong><ul class=\"mt-2 space-y-1 list-disc list-inside\">" +
+    alertsSection.innerHTML = "<strong class=\"text-weather-warning-text\">Alerts</strong><ul class=\"mt-2 space-y-1 list-disc list-inside text-weather-warning-text\">" +
         alerts.map((a) => `<li>${a.headline || a.event || "Alert"}${a.severity ? " (" + a.severity + ")" : ""}</li>`).join("") +
         "</ul>";
     alertsSection.classList.remove("hidden");

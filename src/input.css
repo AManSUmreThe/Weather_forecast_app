@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@theme {
+  /* Weather app palette */
+  --color-weather-bg: #e8f2f6;
+  --color-weather-bg-subtle: #d4e8f0;
+  --color-weather-surface: #ffffff;
+  --color-weather-surface-hover: #f8fcff;
+  --color-weather-primary: #0d9488;
+  --color-weather-primary-hover: #0f766e;
+  --color-weather-primary-light: #ccfbf1;
+  --color-weather-text: #0f172a;
+  --color-weather-text-muted: #475569;
+  --color-weather-text-soft: #64748b;
+  --color-weather-border: #b8d4e3;
+  --color-weather-border-strong: #7dd3fc;
+  --color-weather-error-bg: #fef2f2;
+  --color-weather-error-border: #fecaca;
+  --color-weather-error-text: #b91c1c;
+  --color-weather-warning-bg: #fffbeb;
+  --color-weather-warning-border: #fde68a;
+  --color-weather-warning-text: #92400e;
+  --color-weather-shadow: #0d9488;
+}
